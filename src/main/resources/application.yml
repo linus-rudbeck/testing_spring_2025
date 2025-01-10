@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: testing_spring_2025
+  datasource:
+    url: jdbc:mysql://localhost:3306/testing_spring_2025?createDatabaseIfNotExist=true
+    username: root
+    password: root
