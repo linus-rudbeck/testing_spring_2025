@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
@@ -31,14 +30,15 @@ public class FoodControllerTest {
 
     @Test
     public void getFoods_ShouldReturnListOfFoods() throws Exception {
-
+        // Arrange
         var foods = List.of(
-                new Food("Test food 1", 1),
-                new Food("Test food 2", 2)
+            new Food("Test food 1", 1),
+            new Food("Test food 2", 2)
         );
 
         when(repository.findAll()).thenReturn(foods);
 
+        // Act & Assert
         mockMvc.perform(get("/api/foods"))
                 .andExpect(status().isOk()) // Status: 200
                 .andExpect(jsonPath("$", hasSize(2)));
